@@ -36,7 +36,7 @@ public class OrderContent {
     //кнопка для раскрытия списка возможных сроков
     private By dropDownArrowTerm = By.className("Dropdown-arrow");
     //выпадающий список для сроков
-    private By DropDownOptionTerm = By.className("Dropdown-option");
+    private By dropDownOptionTerm = By.className("Dropdown-option");
     // чекбоксы для выбора цвета
     private By checkBoxColor = By.className("Checkbox_Input__14A2w");
     //комментарий для курьера
@@ -85,7 +85,7 @@ public class OrderContent {
         WebElement element = driver.findElement(dropDownArrowTerm);
         if (element.isEnabled() ) {
             element.click();
-            List<WebElement> options = driver.findElements(DropDownOptionTerm);
+            List<WebElement> options = driver.findElements(dropDownOptionTerm);
             if (i<options.size()){
                 WebElement option = options.get(i-1);
                 option.click();

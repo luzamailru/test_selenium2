@@ -1,8 +1,6 @@
 package qa;
 import ru.seleniun.samokat.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import java.time.*;
 
  import org.junit.Test;
@@ -10,24 +8,17 @@ import java.time.*;
 import ru.seleniun.samokat.Confirm;
 import ru.seleniun.samokat.OrderContent;
 
-public class TestOrderChrome {
-
-    private WebDriver driver;
+public class TestOrderChrome extends BaseTest {
 
     @Test
     public void checkOrder() {
-        // драйвер для браузера Chrome
-        ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        MainPage mainPage = new MainPage(driver);
         // переход на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(mainPage.URL);
 
-        CookieConsent cookieConsent = new CookieConsent((driver));
-        cookieConsent.buttonClick();
+        mainPage.cookiesButtonClick();
 
-        NavOrderButton objNavOrderButton = new NavOrderButton(driver);
-        objNavOrderButton.clickNavOrderButton();
+        mainPage.clickNavOrderButton();
 
         OrderContent objOrderContent = new OrderContent(driver);
         objOrderContent.waitForLoadData();
@@ -46,18 +37,13 @@ public class TestOrderChrome {
 
     @Test
     public void checkOrder2() {
-        // драйвер для браузера Chrome
-        ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+
+        MainPage mainPage = new MainPage(driver);
         // переход на страницу тестового приложения
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(mainPage.URL);
 
-        CookieConsent cookieConsent = new CookieConsent((driver));
-        cookieConsent.buttonClick();
-
-        HomeThirdPart homeThirdPart  = new HomeThirdPart(driver);
-        homeThirdPart.clickNavOrderButton();
+        mainPage.cookiesButtonClick();
+        mainPage.clickNavOrderButtonBottom();
 
         OrderContent objOrderContent = new OrderContent(driver);
         objOrderContent.waitForLoadData();
@@ -72,11 +58,6 @@ public class TestOrderChrome {
 
         OrderCompleteWindow orderCompleteWindow = new OrderCompleteWindow(driver);
         orderCompleteWindow.checkComplete();
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
     }
 }
 

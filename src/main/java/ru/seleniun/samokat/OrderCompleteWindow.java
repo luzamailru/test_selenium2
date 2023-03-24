@@ -19,7 +19,7 @@ public class OrderCompleteWindow {
     public void checkComplete() {
         WebElement element = driver.findElement(completeHeader);
         new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(element));
-        System.out.println(element.getText());
+        //System.out.println(element.getText());
         MatcherAssert.assertThat("Ожидалось сообщение 'Заказ оформлен'",element.getText(), containsString("Заказ оформлен"));
     }
 

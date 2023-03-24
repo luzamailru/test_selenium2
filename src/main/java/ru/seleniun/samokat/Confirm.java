@@ -16,7 +16,7 @@ public class Confirm {
     }
 
     public void clickButtonYes() {
-        System.out.println(driver.findElement(buttonYes).isDisplayed());
+      //  System.out.println(driver.findElement(buttonYes).isDisplayed());
         driver.findElement(buttonYes).click();
     }
 
